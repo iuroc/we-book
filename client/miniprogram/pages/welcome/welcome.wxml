@@ -1,0 +1,13 @@
+<view class="container">
+    <view class="avatar-box">
+        <label>请选择头像</label>
+        <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+            <image src="{{avatar}}" class="avatar" bind:tap="clickChooseAvatar" />
+        </button>
+    </view>
+    <view class="input-group">
+        <label for="nickname">设置昵称</label>
+        <input type="nickname" maxlength="30" id="nickname" bind:change="onNicknameChange" bindinput="onNicknameChange" placeholder="请输入昵称" />
+    </view>
+    <button type="primary" bind:tap="startUse">开始使用</button>
+</view>

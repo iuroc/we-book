@@ -1,2 +1,7 @@
-<!--pages/shelf/shelf.wxml-->
-<text>pages/shelf/shelf.wxml</text>
+<view wx:if="{{userInfo}}">
+    <view>openID: {{userInfo.openID}}</view>
+    <view>昵称: {{userInfo.nickname}}</view>
+    <view>头像：
+        <image src="{{userInfo.avatar}}" style="width: 100rpx; height: 100rpx;" />
+    </view>
+</view>

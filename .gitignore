@@ -1,3 +1,4 @@
 node_modules/
 server/src/config.ts
 server/dist/
+miniprogram_npm/

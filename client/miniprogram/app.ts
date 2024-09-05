@@ -1,6 +1,7 @@
 // app.ts
 App<IAppOption>({
-    globalData: {},
-    onLaunch() {
+    globalData: {
+    },
+    async onLaunch() {
     },
 })

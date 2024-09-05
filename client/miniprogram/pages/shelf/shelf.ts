@@ -1,53 +1,52 @@
-// pages/shelf/shelf.ts
+import { requireUserInfo } from '../../utils/util'
+
+const app = getApp<IAppOption>()
+
 Page({
 
     /**
      * 页面的初始数据
      */
-    data: {
-
-    },
-
+    data: {},
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad() {
-
+    async onLoad() {
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow() {
-
+    async onShow() {
+        await requireUserInfo()
+        this.setData({
+            userInfo: app.globalData.userInfo,
+            userIndoJSON: JSON.stringify(app.globalData.userInfo)
+        })
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide() {
-
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
     },
 
     /**

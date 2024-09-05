@@ -1,10 +1,11 @@
 {
     "pages": [
+        "pages/user/user",
         "pages/shelf/shelf",
         "pages/store/store",
         "pages/tool/tool",
         "pages/share/share",
-        "pages/user/user"
+        "pages/welcome/welcome"
     ],
     "window": {
         "navigationBarTextStyle": "black",
@@ -21,32 +22,32 @@
             {
                 "pagePath": "pages/shelf/shelf",
                 "text": "书架",
-                "iconPath": "image/书架01.png",
-                "selectedIconPath": "image/书架02.png"
+                "iconPath": "images/书架01.png",
+                "selectedIconPath": "images/书架02.png"
             },
             {
                 "pagePath": "pages/store/store",
                 "text": "书城",
-                "iconPath": "image/书城01.png",
-                "selectedIconPath": "image/书城02.png"
+                "iconPath": "images/书城01.png",
+                "selectedIconPath": "images/书城02.png"
             },
             {
                 "pagePath": "pages/tool/tool",
                 "text": "功能",
-                "iconPath": "image/功能01.png",
-                "selectedIconPath": "image/功能02.png"
+                "iconPath": "images/功能01.png",
+                "selectedIconPath": "images/功能02.png"
             },
             {
                 "pagePath": "pages/share/share",
                 "text": "圈子",
-                "iconPath": "image/圈子01.png",
-                "selectedIconPath": "image/圈子02.png"
+                "iconPath": "images/圈子01.png",
+                "selectedIconPath": "images/圈子02.png"
             },
             {
                 "pagePath": "pages/user/user",
                 "text": "我的",
-                "iconPath": "image/我的01.png",
-                "selectedIconPath": "image/我的02.png"
+                "iconPath": "images/我的01.png",
+                "selectedIconPath": "images/我的02.png"
             }
         ]
     }
