@@ -1,0 +1,13 @@
+{
+  "name": "we-book",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "pnpm --silent --prefix server start",
+    "build": "pnpm --silent --prefix server build",
+    "dev": "pnpm --silent --prefix server dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
