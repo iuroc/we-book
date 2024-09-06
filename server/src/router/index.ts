@@ -54,19 +54,28 @@ router.get('/getUserInfoByCode', async (req, res, next) => {
     }
 }, async (req, res) => {
     const { code } = req.query as { code: string }
-    const { openID, sessionKey } = await code2session(code)
-    const user = await userRepository.findOneBy({ openID })
-    logger.debug(JSON.stringify({ openID }))
-    if (user) {
-        return res.send(makeApiResponse({
-            data: { user, exists: true }
-        }))
-    }
-    else {
-        return res.send(makeApiResponse({
-            message: '用户不存在',
-            data: { openID, sessionKey, exists: false }
-        }))
+    try {
+        const { openID, sessionKey } = await code2session(code)
+        const user = await userRepository.findOneBy({ openID })
+        logger.debug(JSON.stringify({ openID }))
+        if (user) {
+            return res.send(makeApiResponse({
+                data: { user, exists: true }
+            }))
+        }
+        else {
+            return res.send(makeApiResponse({
+                message: '用户不存在',
+                data: { openID, sessionKey, exists: false }
+            }))
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.send(makeApiResponse({
+                success: false,
+                message: error.message
+            }))
+        }
     }
 })
 

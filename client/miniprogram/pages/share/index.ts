@@ -1,4 +1,4 @@
-// pages/tool/tool.ts
+// pages/share/index.ts
 Page({
 
     /**
@@ -26,7 +26,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        this.getTabBar().setData({ value: 'share' })
     },
 
     /**

@@ -2,6 +2,6 @@
 App<IAppOption>({
     globalData: {
     },
-    async onLaunch() {
+    onLaunch() {
     },
 })
