@@ -17,6 +17,12 @@ importers:
       express:
         specifier: ^4.19.2
         version: 4.19.2
+      gede-book-api:
+        specifier: ^1.0.15
+        version: 1.0.15
+      gede-book-server:
+        specifier: ^1.0.1
+        version: 1.0.1
       joi:
         specifier: ^17.13.3
         version: 17.13.3
@@ -549,6 +555,12 @@ packages:
 
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
+
+  gede-book-api@1.0.15:
+    resolution: {integrity: sha512-M9Lxn8u6lqk/f5EKxSLE4lokS9A7i8DfpaQWZPa37WjVgXhIR5ABKe0NCGmH0JCitcx4Xp2Kzb08kOgvEo6dqw==}
+
+  gede-book-server@1.0.1:
+    resolution: {integrity: sha512-90ht/8oRlGUeA91uKzmO9cWUwIIJ3w1za+CziUQvt82bY5JVhWOvB5AERSJBzYlYYtNGYpLmOWvJR1GNXNM2Jg==}
 
   generate-function@2.3.1:
     resolution: {integrity: sha512-eeB5GfMNeevm/GRYq20ShmsaGcmI81kIX2K9XQx5miC8KdHaC6Jm0qQ8ZNeGOi7wYB8OsdxKs+Y2oVuTFuVwKQ==}
@@ -1578,6 +1590,15 @@ snapshots:
   fresh@0.5.2: {}
 
   function-bind@1.1.2: {}
+
+  gede-book-api@1.0.15: {}
+
+  gede-book-server@1.0.1:
+    dependencies:
+      express: 4.19.2
+      gede-book-api: 1.0.15
+    transitivePeerDependencies:
+      - supports-color
 
   generate-function@2.3.1:
     dependencies:

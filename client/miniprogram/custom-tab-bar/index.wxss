@@ -1,1 +1,4 @@
-/* custom-tab-bar2/index.wxss */
+.t-tab-bar {
+    padding-left: 32rpx;
+    padding-right: 32rpx;
+}

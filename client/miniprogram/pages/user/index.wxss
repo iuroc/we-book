@@ -1,1 +1,25 @@
-/* pages/user/index.wxss */
+/* page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 200rpx;
+    overflow: hidden;
+} */
+
+scroll-view {
+    height: 400px;
+}
+
+.avater-box {
+    padding: 50rpx 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avater-box image {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 32rpx;
+}

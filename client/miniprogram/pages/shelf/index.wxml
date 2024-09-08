@@ -1,2 +1,2 @@
-<!--pages/shelf/index.wxml-->
-<text>pages/shelf/index.wxml</text>
+<t-cell bind:tap="toTestPage" title="进入测试页面" leftIcon="code" hover arrow />
+<t-fab style="bottom: 160rpx;" icon="add" button-props="{{fabButton}}" bind:click="handleClick" text="分享给朋友" />

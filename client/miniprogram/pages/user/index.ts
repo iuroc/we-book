@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        avatar: 'https://files.imdodo.com/dodo/625ff071c3ba41b9cbf133e0c9e2a6e5.png '
     },
 
     /**

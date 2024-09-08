@@ -8,6 +8,10 @@ Page({
 
     },
 
+    toTestPage() {
+        wx.navigateTo({ url: '/pages/test/index' })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */

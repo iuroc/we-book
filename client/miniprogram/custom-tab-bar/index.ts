@@ -1,8 +1,15 @@
-const app = getApp<IAppOption>()
+// custom-tab-bat2/index.ts
+Component({
 
-Page({
     /**
-     * 页面的初始数据
+     * 组件的属性列表
+     */
+    properties: {
+
+    },
+
+    /**
+     * 组件的初始数据
      */
     data: {
         value: '',
@@ -14,69 +21,14 @@ Page({
             { value: 'user', label: '我的', icon: 'user' },
         ],
     },
-    onChange(event: WechatMiniprogram.CustomEvent<{ value: string | number }>) {
-        const value = event.detail.value.toString()
-        this.setData({ value })
-        wx.switchTab({ url: `/pages/${value}/index` })
-    },
-
-    attached() {
-        console.log(1234567)
-    },
 
     /**
-     * 生命周期函数--监听页面加载
+     * 组件的方法列表
      */
-    onLoad() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
+    methods: {
+        onChange(event: WechatMiniprogram.CustomEvent<{ value: string | number }>) {
+            const value = event.detail.value.toString()
+            wx.switchTab({ url: `/pages/${value}/index` })
+        },
     }
 })

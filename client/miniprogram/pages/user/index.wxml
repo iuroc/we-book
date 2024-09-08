@@ -1,2 +1,12 @@
-<!--pages/user/index.wxml-->
-<text>pages/user/index.wxml</text>
+<view class="container" style="padding: 32rpx 0;">
+    <view class="avater-box">
+        <image src="{{avatar}}" mode="aspectFit" />
+    </view>
+    <t-cell-group theme="card">
+        <t-cell t-class="t-cell" t-class-left-icon="t-cell-left-icon" bind:tap="toTestPage" title="我的消息" leftIcon="chat-bubble-history" hover arrow />
+        <t-cell t-class="t-cell" t-class-left-icon="t-cell-left-icon" bind:tap="toTestPage" title="我的收藏" leftIcon="heart" hover arrow />
+        <t-cell t-class="t-cell" t-class-left-icon="t-cell-left-icon" bind:tap="toTestPage" title="阅读历史" leftIcon="history" hover arrow />
+    </t-cell-group>
+</view>
+
+<view style="height: 130rpx;"></view>

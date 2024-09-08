@@ -1,41 +1,42 @@
 {
-    "pages": [
-        "pages/shelf/index",
-        "pages/store/index",
-        "pages/tool/index",
-        "pages/share/index",
-        "pages/user/index"
-    ],
-    "window": {
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "书香漫卷",
-        "navigationBarBackgroundColor": "#ffffff"
-    },
-    "componentFramework": "glass-easel",
-    "lazyCodeLoading": "requiredComponents",
-    "tabBar": {
-        "custom": true,
-        "list": [
-            {
-                "text": "书架",
-                "pagePath": "pages/shelf/index"
-            },
-            {
-                "text": "书城",
-                "pagePath": "pages/store/index"
-            },
-            {
-                "text": "功能",
-                "pagePath": "pages/tool/index"
-            },
-            {
-                "text": "书圈",
-                "pagePath": "pages/share/index"
-            },
-            {
-                "text": "我的",
-                "pagePath": "pages/user/index"
-            }
-        ]
-    }
+  "pages": [
+    "pages/store/index",
+    "pages/shelf/index",
+    "pages/tool/index",
+    "pages/share/index",
+    "pages/user/index",
+    "pages/test/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "书香漫卷",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "text": "书架",
+        "pagePath": "pages/shelf/index"
+      },
+      {
+        "text": "书城",
+        "pagePath": "pages/store/index"
+      },
+      {
+        "text": "功能",
+        "pagePath": "pages/tool/index"
+      },
+      {
+        "text": "书圈",
+        "pagePath": "pages/share/index"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/user/index"
+      }
+    ]
+  }
 }

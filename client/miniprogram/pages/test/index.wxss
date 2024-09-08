@@ -1,0 +1,13 @@
+.container {
+    padding: 32rpx;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+}
+
+.image.letter {
+    width: 32rpx;
+    margin-bottom: -14rpx;
+}

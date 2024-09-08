@@ -1,2 +1,22 @@
-<!--pages/store/index.wxml-->
-<text>pages/store/index.wxml</text>
+<t-tabs t-class="t-tabs" wx:if="{{categories.length}}" value="{{value}}" space-evenly="{{false}}" bind:change="onTabsChange" bind:click="onTabsClick">
+    <t-tab-panel wx:for="{{categories}}" wx:key="index" label="{{item.name}}" value="{{item.id}}" />
+</t-tabs>
+
+<view style="height: 96rpx;"></view>
+
+<view class="book-card" wx:for="{{bookList}}" wx:key="index">
+    <image src="{{item.smallCover}}" mode="aspectFill" class="cover" />
+    <view class="right-box">
+        <view class="name">{{item.name}}</view>
+        <view class="author">{{item.author}}</view>
+        <view class="summary">{{item.summary}}</view>
+    </view>
+</view>
+
+<view wx:if="{{noMorePage}}" class="noMorePageTip">
+    已经到底啦~
+</view>
+
+<t-back-top theme="half-round-dark" text="回到顶部" scroll-top="{{scrollTop}}" t-class="t-back-top"></t-back-top>
+
+<view style="height: 130rpx;"></view>
