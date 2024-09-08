@@ -67,4 +67,5 @@
     padding-bottom: 32rpx;
     display: flex;
     justify-content: center;
+    color: rgba(33, 37, 41, 0.5);
 }
