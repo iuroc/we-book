@@ -10,7 +10,9 @@ export const requestGede = async <T = any>(module: 'magazine' | 'book', func: st
     wx.request({
         url: `${app.globalData.apiBaseURL}/gede/${module}/${func}?args=${JSON.stringify(args)}`,
         success(result) {
-            resolve(result.data as ApiResponse)
+            const response = result.data as ApiResponse
+            if (response.success) resolve(response)
+            else reject(new Error(response.message))
         },
         fail(error) {
             reject(new Error(error.errMsg))

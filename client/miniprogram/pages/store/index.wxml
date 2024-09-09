@@ -1,4 +1,4 @@
-<t-tabs t-class="t-tabs" wx:if="{{categories.length}}" value="{{value}}" space-evenly="{{false}}" bind:change="onTabsChange" bind:click="onTabsClick">
+<t-tabs t-class="t-tabs" wx:if="{{categories.length}}" value="{{activeID}}" space-evenly="{{false}}" bind:change="onTabsChange" bind:click="onTabsClick">
     <t-tab-panel wx:for="{{categories}}" wx:key="index" label="{{item.name}}" value="{{item.id}}" />
 </t-tabs>
 
