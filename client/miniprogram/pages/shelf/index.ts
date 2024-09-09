@@ -1,3 +1,5 @@
+import { getGedeRes } from "../store/utils/util"
+
 // pages/shelf/index.ts
 Page({
 

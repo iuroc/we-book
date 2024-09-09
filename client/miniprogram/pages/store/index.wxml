@@ -1,27 +1,23 @@
-<t-tabs t-class="t-tabs" wx:if="{{categories.length}}" value="{{activeID}}" space-evenly="{{false}}" bind:change="onTabsChange" bind:click="onTabsClick">
-    <t-tab-panel wx:for="{{categories}}" wx:key="index" label="{{item.name}}" value="{{item.id}}" />
-</t-tabs>
-
 <view style="height: 96rpx;"></view>
-
-<view class="book-card" hover-class="card-hover" hover-stay-time="100" wx:for="{{bookList}}" wx:key="index">
-    <image src="{{item.smallCover}}" mode="aspectFill" class="cover" />
-    <view class="right-box">
-        <view class="name">{{item.name}}</view>
-        <view class="author">{{item.author}}</view>
-        <view class="summary">{{item.summary}}</view>
+<view wx:if="{{!showResultTip}}">
+    <t-tabs t-class="t-tabs" wx:if="{{categories.length}}" value="{{activeID}}" space-evenly="{{false}}" bind:change="onTabsChange">
+        <t-tab-panel wx:for="{{categories}}" wx:key="index" label="{{item.name}}" value="{{item.id}}" />
+    </t-tabs>
+    <view class="book-card" hover-class="card-hover" hover-stay-time="100" wx:for="{{bookList}}" wx:key="index">
+        <image src="{{item.smallCover}}" mode="aspectFill" class="cover" />
+        <view class="right-box">
+            <view class="name">{{item.name}}</view>
+            <view class="author">{{item.author}}</view>
+            <view class="summary">{{item.summary}}</view>
+        </view>
     </view>
+    <view wx:if="{{noMorePage}}" class="noMorePageTip">
+        已经到底啦~
+    </view>
+    <t-back-top theme="half-round-dark" text="回到顶部" scroll-top="{{scrollTop}}" t-class="t-back-top"></t-back-top>
 </view>
-
-<view wx:if="{{noMorePage}}" class="noMorePageTip">
-    已经到底啦~
-</view>
-
-<t-back-top theme="half-round-dark" text="回到顶部" scroll-top="{{scrollTop}}" t-class="t-back-top"></t-back-top>
-
 <view wx:if="{{showResultTip}}" style="display: flex; flex-direction: column; align-items: center; gap: 32rpx;">
     <t-result theme="{{resultTipTheme}}" title="{{resultTipTitle}}" />
-    <t-button bind:tap="reload">刷新试试</t-button>
+    <t-button bind:tap="refresh">刷新试试</t-button>
 </view>
-
 <view style="height: 130rpx;"></view>

@@ -1,5 +1,5 @@
 import { TabValue } from "../../miniprogram_npm/tdesign-miniprogram/tabs"
-import { requestGede } from "../../utils/util"
+import { requestGede, sleep } from "../../utils/util"
 import { BookItem } from "./utils/util"
 
 // pages/store/index.ts
@@ -32,24 +32,20 @@ Page({
     /** 加载下一页列表，请确保已经设置 `activeID` 和 `nextPage`
      * 
      * @param cover 是否覆盖列表，该选项用于初始化列表
+     * 
+     * @throws {Error}
      */
     async loadNextList(cover: boolean = false) {
         if (cover) this.setData({ nextPage: 0, noMorePage: false })
         const pageSize = 72
-        try {
-            const result = await requestGede<BookItem[]>('book', 'getList', [this.data.activeID, this.data.nextPage, pageSize])
-            const bookList = result.data
-            this.data.nextPage++
-            if (bookList.length < pageSize || bookList.length == 0) {
-                // 已经到底了
-                this.setData({ noMorePage: true })
-            }
-            this.setData({ bookList: cover ? bookList : this.data.bookList.concat(bookList) })
-        } catch (error) {
-            if (error instanceof Error) {
-                this.showNetworkErrorTip()
-            }
+        const result = await requestGede<BookItem[]>('book', 'getList', [this.data.activeID, this.data.nextPage, pageSize])
+        const bookList = result.data
+        this.data.nextPage++
+        if (bookList.length < pageSize || bookList.length == 0) {
+            // 已经到底了
+            this.setData({ noMorePage: true })
         }
+        this.setData({ bookList: cover ? bookList : this.data.bookList.concat(bookList) })
     },
 
     onPageScroll(e) {
@@ -60,42 +56,47 @@ Page({
      * 生命周期函数--监听页面加载
      */
     async onLoad() {
-        wx.showLoading({ title: '正在加载' })
-        await this.loadTab()
-        if (!this.data.showResultTip)
-            await this.loadNextList(true)
-        wx.hideLoading()
+        this.refresh()
     },
-    async reload() {
-        this.setData({ showResultTip: false })
+
+    /** 根据当前的 `activeID` 刷新列表，如果 `categories` 为空，则加载 Tab 列表并将第一项设为 `activeID` */
+    async refresh() {
         wx.showLoading({ title: '正在加载' })
-        await Promise.all([
-            this.loadTab()
-        ])
-    },
-    /** 加载选项卡列表，并自动设置聚焦的选项卡 ID，如果获取失败，会显示加载失败 */
-    async loadTab() {
-        type Item = { id: number, name: string }
         try {
-            const result = await requestGede<Item[]>('book', 'getCategories', [])
-            const data = result.data.filter(item => item.id != 123)
+            if (this.data.categories.length == 0) await this.loadTab()
+            await this.loadNextList(true)
             this.setData({
-                categories: data,
-                activeID: data[0].id
+                showResultTip: false
             })
         } catch (error) {
             if (error instanceof Error) {
-                this.showNetworkErrorTip()
+                this.showErrorTip(error.message)
+                await sleep(300)
             }
         }
+        wx.hideLoading()
     },
 
-    /** 显示网络错误提示信息 */
-    showNetworkErrorTip() {
+    /** 加载选项卡列表，并自动设置聚焦的选项卡 ID，如果获取失败，会显示加载失败
+     * 
+     * @throws {Error}
+     */
+    async loadTab() {
+        type Item = { id: number, name: string }
+        const result = await requestGede<Item[]>('book', 'getCategories', [])
+        const data = result.data.filter(item => item.id != 123)
+        if (data.length == 0) throw new Error('选项卡加载失败')
+        this.setData({
+            categories: data,
+            activeID: data[0].id
+        })
+    },
+
+    showErrorTip(title: string) {
         this.setData({
             showResultTip: true,
             resultTipTheme: 'error',
-            resultTipTitle: '加载失败，请检查网络连接~'
+            resultTipTitle: title
         })
     },
 
@@ -103,12 +104,7 @@ Page({
         await wx.pageScrollTo({ duration: 300, scrollTop: 0 })
         const catagoryId = event.detail.value as number
         this.setData({ activeID: catagoryId })
-        wx.showLoading({ title: '正在加载' })
-        await this.loadNextList(true)
-        wx.hideLoading()
-    },
-
-    onTabsClick(event: WechatMiniprogram.CustomEvent<{ value: TabValue, label: string }>) {
+        this.refresh()
     },
 
     /**
@@ -143,10 +139,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     async onPullDownRefresh() {
-        this.setData({ showResultTip: false })
-        wx.showLoading({ title: '正在加载' })
-        await this.loadNextList(true)
-        wx.hideLoading()
+        await this.refresh()
         wx.stopPullDownRefresh()
     },
 
@@ -156,7 +149,14 @@ Page({
     async onReachBottom() {
         if (this.data.noMorePage) return
         wx.showLoading({ title: '正在加载' })
-        await this.loadNextList()
+        try {
+            await this.loadNextList()
+        } catch (error) {
+            if (error instanceof Error) {
+                this.showErrorTip(error.message)
+                await sleep(300)
+            }
+        }
         wx.hideLoading()
         wx.stopPullDownRefresh()
     },

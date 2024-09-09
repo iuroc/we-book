@@ -19,3 +19,5 @@ export const requestGede = async <T = any>(module: 'magazine' | 'book', func: st
         }
     })
 })
+
+export const sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms))
