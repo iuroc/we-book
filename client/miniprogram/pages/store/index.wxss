@@ -59,7 +59,7 @@
 }
 
 .t-back-top {
-    --td-spacer-2: 150rpx;
+    --td-spacer-2: 160rpx;
 }
 
 .noMorePageTip {
@@ -68,4 +68,8 @@
     display: flex;
     justify-content: center;
     color: rgba(33, 37, 41, 0.5);
+}
+
+.card-hover {
+    background-color: var(--td-cell-hover-color);
 }

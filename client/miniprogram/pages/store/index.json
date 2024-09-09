@@ -5,7 +5,8 @@
         "t-cell": "tdesign-miniprogram/cell/cell",
         "t-sticky": "tdesign-miniprogram/sticky/sticky",
         "t-back-top": "tdesign-miniprogram/back-top/back-top",
-        "half-round": "./back-top"
+        "t-result": "tdesign-miniprogram/result/result",
+        "t-button": "tdesign-miniprogram/button/button"
     },
     "enablePullDownRefresh": true
 }

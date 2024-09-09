@@ -1,2 +1,10 @@
 <t-cell bind:tap="toTestPage" title="进入测试页面" leftIcon="code" hover arrow />
-<t-fab style="bottom: 160rpx;" icon="add" button-props="{{fabButton}}" bind:click="handleClick" text="分享给朋友" />
+
+<t-fab style="bottom: 160rpx;" icon="file-import" button-props="{{fabButton}}" bind:click="importLocal" text="导入图书" button-props="{{null}}" />
+
+<t-popup visible="{{showPopup}}" bind:visible-change="onVisibleChange" t-class="t-popup" placement="bottom">
+    <view class="popup-body">
+        <t-cell t-class="t-cell" t-class-left="t-cell-left" bind:tap="toTestPage" title="从本地上传" description="支持 PDF、Word、EPUB、TXT、HTML、Markdown 格式" leftIcon="file-import" hover />
+        <t-cell t-class="t-cell" t-class-left="t-cell-left" bind:tap="toTestPage" title="从链接导入" description="抓取并导入网页链接中的文章" leftIcon="link" hover />
+    </view>
+</t-popup>

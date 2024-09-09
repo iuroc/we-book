@@ -14,21 +14,35 @@ Page({
         bookList: [] as Array<BookItem>,
         nextPage: 0,
         scrollTop: 0,
+        /** 列表已经到底了 */
         noMorePage: false,
+        /** 是否展示结果提示 `t-result` */
+        showResultTip: false,
+        /** `t-result` 的 `theme` */
+        resultTipTheme: undefined as undefined | 'success' | 'warning' | 'error',
+        /** `t-result` 的 `title` */
+        resultTipTitle: '',
     },
 
     async loadNextList(cover: boolean = false) {
         if (cover) this.setData({ nextPage: 0, noMorePage: false })
         const pageSize = 72
-        const bookList = await requestGede<BookItem[]>('book', 'getList', [this.data.value, this.data.nextPage, pageSize]).then(result => result.data)
-        this.data.nextPage++
-        if (bookList.length < pageSize || bookList.length == 0) {
-            // 已经到底了
-            this.setData({
-                noMorePage: true
-            })
+        try {
+            const result = await requestGede<BookItem[]>('book', 'getList', [this.data.value, this.data.nextPage, pageSize])
+            const bookList = result.data
+            this.data.nextPage++
+            if (bookList.length < pageSize || bookList.length == 0) {
+                // 已经到底了
+                this.setData({
+                    noMorePage: true
+                })
+            }
+            this.setData({ bookList: cover ? bookList : this.data.bookList.concat(bookList) })
+        } catch (error) {
+            if (error instanceof Error) {
+                this.showNetworkErrorTip()
+            }
         }
-        this.setData({ bookList: cover ? bookList : this.data.bookList.concat(bookList) })
     },
 
     onPageScroll(e) {
@@ -42,17 +56,34 @@ Page({
     onLoad() {
         this.loadTab()
     },
-
+    reload() {
+        wx.startPullDownRefresh()
+    },
     async loadTab() {
         wx.showLoading({ title: '正在加载' })
-        return requestGede<{ id: number, name: string }[]>('book', 'getCategories', []).then(async result => {
+        try {
+            const result = await requestGede<{ id: number, name: string }[]>('book', 'getCategories', [])
             const data = result.data.filter(item => item.id != 123)
             this.setData({
                 categories: data,
                 value: data[0].id
             })
-            await this.loadNextList(true)
+        } catch (error) {
+            if (error instanceof Error) {
+                this.showNetworkErrorTip()
+            }
+        } finally {
             wx.hideLoading()
+        }
+        await this.loadNextList(true)
+    },
+
+    /** 显示网络错误提示信息 */
+    showNetworkErrorTip() {
+        this.setData({
+            showResultTip: true,
+            resultTipTheme: 'error',
+            resultTipTitle: '网络跑路啦~'
         })
     },
 
@@ -100,6 +131,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     async onPullDownRefresh() {
+        this.setData({ showResultTip: false })
         wx.showLoading({ title: '正在加载' })
         await this.loadNextList(true)
         wx.hideLoading()

@@ -5,7 +5,16 @@ Page({
      * 页面的初始数据
      */
     data: {
+        showPopup: false,
+    },
 
+    onVisibleChange(event: WechatMiniprogram.CustomEvent<{
+        visible: boolean
+        trigger: 'close-btn' | 'overlay'
+    }>) {
+        this.setData({
+            showPopup: event.detail.visible,
+        })
     },
 
     toTestPage() {
@@ -66,5 +75,11 @@ Page({
      */
     onShareAppMessage() {
 
+    },
+
+    importLocal() {
+        this.setData({
+            showPopup: true
+        })
     }
 })

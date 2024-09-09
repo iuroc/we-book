@@ -1,1 +1,17 @@
-/* pages/shelf/index.wxss */
+.popup-body {
+    background: var(--td-bg-color-container);
+    padding-top: 32rpx;
+    padding-bottom: 32rpx;
+}
+
+.t-popup {
+    --td-popup-border-radius: 16rpx;
+}
+
+.t-cell {
+    --td-cell-horizontal-padding: 64rpx;
+}
+
+.t-cell-left {
+    --td-spacer: 32rpx;
+}
