@@ -42,6 +42,7 @@ export const getGedeRes = async<T = any>(
         const url = `${app.globalData.apiBaseURL}/gede/book/${func}?args=${JSON.stringify(args)}`
         wx.request({
             url,
+            timeout: 3000,
             success(result) {
                 const data = result.data as Partial<ApiResponse>
                 if (!data.success) {

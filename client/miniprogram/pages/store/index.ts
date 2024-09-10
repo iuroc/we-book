@@ -61,7 +61,7 @@ Page({
 
     /** 根据当前的 `activeID` 刷新列表，如果 `categories` 为空，则加载 Tab 列表并将第一项设为 `activeID` */
     async refresh() {
-        wx.showLoading({ title: '正在加载' })
+        wx.showLoading({ title: '正在加载', mask: true })
         try {
             if (this.data.categories.length == 0) await this.loadTab()
             await this.loadNextList(true)
@@ -70,7 +70,7 @@ Page({
             })
         } catch (error) {
             if (error instanceof Error) {
-                this.showErrorTip(error.message)
+                this.showErrorTip(this.convertErrorMessage(error))
                 await sleep(300)
             }
         }
@@ -148,17 +148,22 @@ Page({
      */
     async onReachBottom() {
         if (this.data.noMorePage) return
-        wx.showLoading({ title: '正在加载' })
+        wx.showLoading({ title: '正在加载', mask: true })
         try {
             await this.loadNextList()
         } catch (error) {
             if (error instanceof Error) {
-                this.showErrorTip(error.message)
+                this.showErrorTip(this.convertErrorMessage(error))
                 await sleep(300)
             }
         }
         wx.hideLoading()
         wx.stopPullDownRefresh()
+    },
+
+    convertErrorMessage(error: Error) {
+        if (error.message.includes('request:fail')) error.message = '请求出错啦~'
+        return error.message
     },
 
     /**

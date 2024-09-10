@@ -3,61 +3,6 @@
     --td-cell-image-height: 280rpx;
 }
 
-
-.t-tabs {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-}
-
-.book-card {
-    display: flex;
-    padding: 32rpx;
-    gap: 24rpx;
-    background-color: #ffffff;
-}
-
-.book-card:not(:last-child) {
-    border-bottom: 1rpx solid #e7e7e7;
-}
-
-.book-card .right-box {
-    display: flex;
-    flex-direction: column;
-    gap: 16rpx;
-    overflow: hidden;
-}
-
-.book-card .cover {
-    flex: 0 0 200rpx;
-    height: 280rpx;
-    border-radius: 15rpx;
-    border: 1px solid #e7e7e7;
-}
-
-.book-card .name,
-.book-card .author {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.book-card .author {
-    font-size: small;
-    color: #17a2b8;
-}
-
-.book-card .summary {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    overflow: hidden;
-    font-size: small;
-    color: #6c757d;
-}
-
 .t-back-top {
     --td-spacer-2: 160rpx;
 }
@@ -68,8 +13,4 @@
     display: flex;
     justify-content: center;
     color: rgba(33, 37, 41, 0.5);
-}
-
-.card-hover {
-    background-color: var(--td-cell-hover-color);
 }

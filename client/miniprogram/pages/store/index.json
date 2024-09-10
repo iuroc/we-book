@@ -1,12 +1,12 @@
 {
     "usingComponents": {
-        "t-tabs": "tdesign-miniprogram/tabs/tabs",
-        "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel",
         "t-cell": "tdesign-miniprogram/cell/cell",
         "t-sticky": "tdesign-miniprogram/sticky/sticky",
         "t-back-top": "tdesign-miniprogram/back-top/back-top",
         "t-result": "tdesign-miniprogram/result/result",
-        "t-button": "tdesign-miniprogram/button/button"
+        "t-button": "tdesign-miniprogram/button/button",
+        "book-card": "./book-card/index",
+        "tabs": "./tabs/index"
     },
     "enablePullDownRefresh": true
 }

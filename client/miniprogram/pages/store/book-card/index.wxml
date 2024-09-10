@@ -1,0 +1,8 @@
+<view class="book-card {{border ? 'border' : ''}}" hover-class="card-hover" hover-stay-time="100" bind:tap="toBookInfo">
+    <image src="{{item.smallCover}}" mode="aspectFill" class="cover" />
+    <view class="right-box">
+        <view class="name">{{item.name}}</view>
+        <view class="author">{{item.author}}</view>
+        <view class="summary">{{item.summary}}</view>
+    </view>
+</view>

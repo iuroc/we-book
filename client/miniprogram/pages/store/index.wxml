@@ -1,16 +1,7 @@
 <view style="height: 96rpx;"></view>
 <view wx:if="{{!showResultTip}}">
-    <t-tabs t-class="t-tabs" wx:if="{{categories.length}}" value="{{activeID}}" space-evenly="{{false}}" bind:change="onTabsChange">
-        <t-tab-panel wx:for="{{categories}}" wx:key="index" label="{{item.name}}" value="{{item.id}}" />
-    </t-tabs>
-    <view class="book-card" hover-class="card-hover" hover-stay-time="100" wx:for="{{bookList}}" wx:key="index">
-        <image src="{{item.smallCover}}" mode="aspectFill" class="cover" />
-        <view class="right-box">
-            <view class="name">{{item.name}}</view>
-            <view class="author">{{item.author}}</view>
-            <view class="summary">{{item.summary}}</view>
-        </view>
-    </view>
+    <tabs activeID="{{activeID}}" categories="{{categories}}" bind:change="onTabsChange" />
+    <book-card wx:for="{{bookList}}" wx:key="index" item="{{item}}" border="{{index!=bookList.length-1}}" />
     <view wx:if="{{noMorePage}}" class="noMorePageTip">
         已经到底啦~
     </view>
