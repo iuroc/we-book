@@ -1,0 +1,18 @@
+<view wx:if="{{showPage}}">
+    <view class="top-box">
+        <image class="book-cover" src="{{info.bigCover}}" mode="aspectFill" bind:tap="previewCover" />
+    </view>
+
+    <t-cell-group>
+        <t-cell t-class="t-cell" title="书名" note="{{info.name}}" />
+        <t-cell t-class="t-cell" title="作者" note="{{info.author}}" />
+        <t-cell t-class="t-cell" title="出版社" note="{{info.publish}}" />
+        <t-cell t-class="t-cell" title="出版时间" note="{{info.publishTime}}" />
+        <t-cell t-class="t-cell" title="ISBN" note="{{info.isbn}}" />
+        <t-cell t-class="t-cell" title="内容介绍" description="{{info.summary}}" />
+    </t-cell-group>
+
+    <t-cell-group title="图书目录">
+        <t-cell bind:tap="goRead" data-page="{{item.page}}" wx:for="{{catalogsFlat}}" wx:key="index" t-class="t-cell" t-class-title="{{item.indent==0?'t-cell-title-root' : 't-cell-title-sub'}}" title="{{item.title}}" note="第 {{item.page}} 页" hover arrow />
+    </t-cell-group>
+</view>

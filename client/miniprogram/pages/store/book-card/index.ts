@@ -29,7 +29,10 @@ Component({
      */
     methods: {
         toBookInfo() {
-            console.log(123456)
+            const item = this.properties.item as BookItem
+            wx.navigateTo({
+                url: `/pages/book-info/index?id=${item.id}`
+            })
         }
     }
 })

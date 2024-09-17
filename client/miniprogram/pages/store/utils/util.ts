@@ -2,19 +2,38 @@ import { ApiResponse } from "../../../utils/util"
 
 const app = getApp<IAppOption>()
 
+/** 图书正文和目录数据 */
+export type BookData = {
+    contents: string[]
+    catalogs: {
+        page: number,
+        title: string
+        children: BookData['catalogs']
+    }[]
+}
+
 /** 图书列表项
  * 
  * {@link https://github.com/iuroc/gede-book-api/blob/971cb132f281f9d9740a371454de5011e2100a55/src/book.mts#L162 gede-book-api/src/book.mts#L162}
  */
 export type BookItem = {
+    /** 书名 */
     name: string
+    /** 作者 */
     author: string
+    /** 编号 */
     id: string
+    /** 出版社 */
     publish: string
+    /** 简介 */
     summary: string
+    /** 封面 */
     bigCover: string
+    /** 封面 */
     smallCover: string
+    /** 资源标识 */
     surl: string
+    /** 价格 */
     price: string
     /** 网页阅读器 */
     webReader: string
