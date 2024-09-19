@@ -1,3 +1,6 @@
+import { requestGede } from "../../utils/util"
+import { BookData } from "../store/utils/util"
+
 // pages/read/index.ts
 Page({
 
@@ -5,14 +8,25 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        content: ''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(option) {
+    async onLoad(option) {
+        wx.showLoading({ title: '正在加载' })
+        const bookId = option.id as string || 'HYB11735982'
+        const page = parseInt(option.page || '6')
+        const bookData = await this.getBookData(bookId, page, 30)
+        const content = bookData.contents[0].replace(/<img/g, '<img class="image"')
+        this.setData({ content })
+        wx.hideLoading()
+    },
 
+    async getBookData(id: string, page: number, pageSize: number) {
+        const data = await requestGede<BookData>('book', 'getData', [id, page, pageSize]).then(res => res.data)
+        return data
     },
 
     /**
@@ -62,5 +76,9 @@ Page({
      */
     onShareAppMessage() {
 
+    },
+
+    longPress(event: WechatMiniprogram.CustomEvent) {
+        console.log(event)
     }
 })

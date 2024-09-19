@@ -13,6 +13,6 @@
     </t-cell-group>
 
     <t-cell-group title="图书目录">
-        <t-cell bind:tap="goRead" data-page="{{item.page}}" wx:for="{{catalogsFlat}}" wx:key="index" t-class="t-cell" t-class-title="{{item.indent==0?'t-cell-title-root' : 't-cell-title-sub'}}" title="{{item.title}}" note="第 {{item.page}} 页" hover arrow />
+        <t-cell bind:tap="goRead" data-page="{{item.page - 1}}" wx:for="{{catalogsFlat}}" wx:key="index" t-class="t-cell" t-class-title="{{item.indent==0?'t-cell-title-root' : 't-cell-title-sub'}}" title="{{item.title}}" note="第 {{item.page}} 页" hover arrow />
     </t-cell-group>
 </view>

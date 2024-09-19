@@ -1,1 +1,21 @@
-/* pages/read/index.wxss */
+page {
+    background-color: #efe2c0;
+}
+
+.container {
+    padding: 32rpx;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+}
+
+.image.letter {
+    width: 32rpx;
+    margin-bottom: -14rpx;
+}
+
+.text {
+    letter-spacing: 1px;
+}

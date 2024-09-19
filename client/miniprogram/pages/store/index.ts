@@ -27,6 +27,7 @@ Page({
         resultTipTheme: undefined as undefined | 'success' | 'warning' | 'error',
         /** `t-result` 的 `title` */
         resultTipTitle: '',
+        showPage: false
     },
 
     /** 加载下一页列表，请确保已经设置 `activeID` 和 `nextPage`
@@ -56,7 +57,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     async onLoad() {
-        this.refresh()
+        await this.refresh()
+        this.setData({ showPage: true })
     },
 
     /** 根据当前的 `activeID` 刷新列表，如果 `categories` 为空，则加载 Tab 列表并将第一项设为 `activeID` */

@@ -1,2 +1,3 @@
-<!--pages/read/index.wxml-->
-<text>pages/read/index.wxml</text>
+<view class="container">
+    <rich-text nodes="{{content}}" user-select="true" />
+</view>

@@ -9,7 +9,7 @@ Page({
      */
     data: {
         showPage: false,
-    } as { info: BookInfo, catalogs: BookData['catalogs'], catalogsFlat: CatalogsFalt, showPage: boolean },
+    } as { info: BookInfo, catalogsFlat: CatalogsFalt, showPage: boolean },
 
     previewCover() {
         wx.previewImage({
@@ -36,7 +36,7 @@ Page({
             return flats
         }
         const catalogsFlat: CatalogsFalt = getCatalogsFalt(catalog.catalogs)
-        this.setData({ info, catalogs: catalog.catalogs, catalogsFlat, showPage: true })
+        this.setData({ info, catalogsFlat, showPage: true })
         wx.hideLoading()
     },
 
